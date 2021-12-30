@@ -53,6 +53,13 @@ document.querySelectorAll('.item').forEach(item => {
         winningScreen.style.opacity = "100%";
         }
         }
+
+        if(movesCount == 9){
+            winningMessage.textContent = "Draw";
+            winningScreen.style.visibility  = "visible";
+            winningScreen.style.opacity = "100%";
+        }
+        
     }, {once : true})
   })
 
