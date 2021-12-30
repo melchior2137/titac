@@ -1,0 +1,149 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+
+.winning-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.931);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1s ease-in all;
+}
+
+.winning-message {
+    font-size: 4rem;
+    color: white;
+    font-weight: bold;
+}
+
+.restart {
+    background-color: #421818;
+    /* Green */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    border-radius: 2.5rem;
+    transition: 500ms all;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently*/
+}
+
+.restart:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #421818;
+}
+
+
+
+.container {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-template-rows: 150px 150px 150px;
+    grid-template-columns: 150px 150px 150px;
+    justify-content: center;
+    align-content: center;
+}
+
+.item {
+    width: 150px;
+    height: 150px;
+    border: 3px solid black;
+}
+
+.item:first-child,
+.item:nth-child(2),
+.item:nth-child(3) {
+    border-top: none;
+}
+
+.item:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.item:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.item:last-child,
+.item:nth-child(8),
+.item:nth-child(7) {
+    border-bottom: none;
+}
+
+
+.checked {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.checked::after,
+.checked::before {
+    content: '';
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background-color: black;
+    position: absolute;
+
+}
+
+.checked::after {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+}
+
+.checked2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.checked2::after,
+.checked2::before {
+    content: '';
+    width: 10px;
+    height: 125px;
+    background-color: black;
+    position: absolute;
+
+}
+
+.checked2::before {
+    transform: rotate(45deg);
+}
+
+.checked2::after {
+    transform: rotate(-45deg);
+}
