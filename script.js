@@ -134,7 +134,7 @@ const GameBoard = (function () {
                         if(selectedItem != null){
                         selectedItem.classList.add("checked");
                         if (player2Move(selectedItem.dataset.row, selectedItem.dataset.column) == 1) {
-                            winningMessage.textContent = "Player 2 Won";
+                            winningMessage.textContent = "CPU Won";
                             makeVisable();
                         }
                     }
