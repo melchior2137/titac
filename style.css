@@ -4,8 +4,8 @@
 
 body {
     margin: 0;
+    font-family: 'Pushster', cursive;
 }
-
 
 .winning-screen {
     position: fixed;
@@ -22,22 +22,29 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: 1s ease-in all;
+    z-index: 1;
 }
 
 .winning-message {
-    font-size: 4rem;
+    font-size: 5.125rem;
     color: white;
-    font-weight: bold;
+    transition: 1s ease-in all;
 }
 
-.restart {
+.button-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:2rem;
+    text-align: center;
+}
+.button {
     background-color: #421818;
     /* Green */
     color: white;
     padding: 15px 32px;
     text-align: center;
     font-size: 3rem;
-    font-weight: bold;
     border-radius: 2.5rem;
     transition: 500ms all;
     -webkit-touch-callout: none;
@@ -52,24 +59,35 @@ body {
     /* Internet Explorer/Edge */
     user-select: none;
     /* Non-prefixed version, currently*/
+    width: 30vw;
 }
 
-.restart:hover {
+.button:hover {
     cursor: pointer;
     background-color: white;
     color: #421818;
 }
 
+.title{
+    height: 30vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+}
 
+.choose{
+    font-size: 3rem;
+}
 
 .container {
     display: grid;
-    height: 100vh;
+    height: 70vh;
     width: 100vw;
     grid-template-rows: 150px 150px 150px;
     grid-template-columns: 150px 150px 150px;
     justify-content: center;
-    align-content: center;
 }
 
 .item {
@@ -147,3 +165,4 @@ body {
 .checked2::after {
     transform: rotate(-45deg);
 }
+
