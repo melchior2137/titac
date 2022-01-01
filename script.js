@@ -116,6 +116,7 @@ const GameBoard = (function () {
         document.querySelectorAll('.item').forEach(item => {
             item.addEventListener('click', () => {
                 if (!item.classList.contains("checked") && !item.classList.contains("checked2")) {
+                    movesCount++;
                     item.classList.add("checked2");
                     board[item.dataset.id] = null;
                     if (player1Move(item.dataset.row, item.dataset.column) == 1) {
@@ -123,27 +124,28 @@ const GameBoard = (function () {
                         makeVisable();
                     }
                     else{
+                        movesCount++;
                         var indexes = Array.from(Array(board.length).keys());
                         var availableIndexes = indexes.filter((index) => board[index] != null);
                         var selectedIndex = availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
 
                         board[selectedIndex] = null;
                         selectedItem = document.querySelector(`[data-id='${selectedIndex}']`);
+                        if(selectedItem != null){
                         selectedItem.classList.add("checked");
-
                         if (player2Move(selectedItem.dataset.row, selectedItem.dataset.column) == 1) {
                             winningMessage.textContent = "Player 2 Won";
                             makeVisable();
                         }
-
-                        console.log(availableIndexes);
+                    }
                         console.log(selectedIndex);
+                        console.log(availableIndexes);
                     }
                     }
 
 
 
-                if (movesCount == 9 && winningMessage.textContent == "") {
+                if (movesCount > 9  && winningMessage.textContent == "") {
                     winningMessage.textContent = "Draw";
                     winningScreen.style.visibility = "visible";
                     makeVisable();
@@ -185,6 +187,7 @@ const GameBoard = (function () {
         player2Diag = 0;
         player1ADiag = 0;
         player2ADiag = 0;
+        id = 0;
         restartButton.disabled = true;
         backButton.disabled = true;
         items.forEach((el) => el.classList.remove("checked"));
