@@ -105,7 +105,7 @@ const GameBoard = (function () {
                     item.classList.add("checked2");
                     board[item.dataset.id] = null;
                     if (player1Move(item.dataset.row, item.dataset.column) == 1) {
-                        winningMessage.textContent = "Player 1 Won";
+                        winningMessage.textContent = "You Won";
                         makeVisable();
                     }
                     else {
