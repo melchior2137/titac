@@ -29,6 +29,7 @@ body {
     font-size: 5.125rem;
     color: white;
     transition: 1s ease-in all;
+    text-align: center;
 }
 
 .button-container {
