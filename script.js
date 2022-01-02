@@ -1,47 +1,32 @@
-let winningScreen = document.querySelector(".winning-screen");
-let winningMessage = document.querySelector(".winning-message");
-let restartButton = document.querySelector(".restart");
-let playerButton = document.querySelector(".player");
-let cpuButton = document.querySelector(".cpu");
-let backButton = document.querySelector(".back")
-let body = document.querySelector("body");
-let buttonContainer = document.querySelector(".button-container");
-let id = 0;
-
-
-let movesCount = 0;
-
-let player1Rows = [0, 0, 0];
-let player2Rows = [0, 0, 0];
-let player1Col = [0, 0, 0];
-let player2Col = [0, 0, 0];
-let player1Diag = 0;
-let player2Diag = 0;
-let player1ADiag = 0;
-let player2ADiag = 0;
-
-//wyłaczanie przycisków, właczam je dopiero 1000ms po tym jak zaczna stawac sie widoczne
-restartButton.disabled = true;
-backButton.disabled = true;
-
-
-//table dla CPU 
-
-const WINNING_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-]
-
-let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
-
 const GameBoard = (function () {
+
+    let winningScreen = document.querySelector(".winning-screen");
+    let winningMessage = document.querySelector(".winning-message");
+    let restartButton = document.querySelector(".restart");
+    let playerButton = document.querySelector(".player");
+    let cpuButton = document.querySelector(".cpu");
+    let backButton = document.querySelector(".back")
+    let body = document.querySelector("body");
+    let buttonContainer = document.querySelector(".button-container");
+    let id = 0;
+
+
+    let movesCount = 0;
+
+    let player1Rows = [0, 0, 0];
+    let player2Rows = [0, 0, 0];
+    let player1Col = [0, 0, 0];
+    let player2Col = [0, 0, 0];
+    let player1Diag = 0;
+    let player2Diag = 0;
+    let player1ADiag = 0;
+    let player2ADiag = 0;
+
+    //wyłaczanie przycisków, właczam je dopiero 1000ms po tym jak zaczna stawac sie widoczne
+    restartButton.disabled = true;
+    backButton.disabled = true;
+
+    let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 
     const makeVisable = () => {
@@ -91,7 +76,7 @@ const GameBoard = (function () {
 
     // --------------------RESET---------------------
     restartButton.addEventListener('click', () => {
-        if (!restartButton.disabled) GameBoard.resetGame();
+        if (!restartButton.disabled) resetGame();
     });
 
     // -------------------BACK----------------------
@@ -111,8 +96,8 @@ const GameBoard = (function () {
     cpuButton.addEventListener('click', () => {
         printGameBoard();
         resetGame();
-        // cala mechaniku cpu
-        
+        // PLAYER VS CPU
+
         document.querySelectorAll('.item').forEach(item => {
             item.addEventListener('click', () => {
                 if (!item.classList.contains("checked") && !item.classList.contains("checked2")) {
@@ -123,7 +108,7 @@ const GameBoard = (function () {
                         winningMessage.textContent = "Player 1 Won";
                         makeVisable();
                     }
-                    else{
+                    else {
                         movesCount++;
                         var indexes = Array.from(Array(board.length).keys());
                         var availableIndexes = indexes.filter((index) => board[index] != null);
@@ -131,21 +116,19 @@ const GameBoard = (function () {
 
                         board[selectedIndex] = null;
                         selectedItem = document.querySelector(`[data-id='${selectedIndex}']`);
-                        if(selectedItem != null){
-                        selectedItem.classList.add("checked");
-                        if (player2Move(selectedItem.dataset.row, selectedItem.dataset.column) == 1) {
-                            winningMessage.textContent = "CPU Won";
-                            makeVisable();
+                        if (selectedItem != null) {
+                            selectedItem.classList.add("checked");
+                            if (player2Move(selectedItem.dataset.row, selectedItem.dataset.column) == 1) {
+                                winningMessage.textContent = "CPU Won";
+                                makeVisable();
+                            }
                         }
                     }
-                        console.log(selectedIndex);
-                        console.log(availableIndexes);
-                    }
-                    }
+                }
 
 
 
-                if (movesCount > 9  && winningMessage.textContent == "") {
+                if (movesCount > 9 && winningMessage.textContent == "") {
                     winningMessage.textContent = "Draw";
                     winningScreen.style.visibility = "visible";
                     makeVisable();
@@ -263,9 +246,5 @@ const GameBoard = (function () {
         if (player1ADiag == 3) {
             return 1;
         }
-    }
-
-    return {
-        resetGame,
     }
 })();
